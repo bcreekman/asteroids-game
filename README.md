@@ -1,11 +1,12 @@
 # Asteroids Game - Python
-<img width="1277" height="717" alt="image" src="https://github.com/user-attachments/assets/bc13f718-37e7-4aa9-953b-66e62ea57a0e" />
+<img width="1275" height="715" alt="image" src="https://github.com/user-attachments/assets/e7abcc91-2197-4a53-bd3a-10393dc94c0c" />
+
 
 
 ## TODO LIST
 * ~~Add a scoring system~~ ✅
 * ~~Implement multiple lives and respawning~~ ✅
-* Add an explosion effect for the asteroids
+* ~~Add an explosion effect for the asteroids~~ ✅
 * Add acceleration to the player movement
 * Make the objects wrap around the screen instead of disappearing
 * Add a background image
