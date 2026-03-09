@@ -15,6 +15,7 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
+    font = pygame.font.SysFont("Comic Sans MS", 30)
     dt = 0
 
     updatable = pygame.sprite.Group()
@@ -36,8 +37,11 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+            
+        lives_text = font.render(f"{player.get_lives()} lives left", False, (255,255,255))
 
         screen.fill("black")
+        screen.blit(lives_text, (5, 5))
         for obj in drawable:
             obj.draw(screen)
 
@@ -45,9 +49,13 @@ def main():
 
         for asteroid in asteroids:
             if asteroid.collides_with(player):
-                log_event("player_hit")
-                print("Game over!")
-                sys.exit()
+                asteroid.kill()
+                player.get_hit()
+
+                if player.get_lives() == 0:
+                    log_event("player_dead")
+                    print("Game over!")
+                    sys.exit()
 
             for shot in shots:
                 if shot.collides_with(asteroid):

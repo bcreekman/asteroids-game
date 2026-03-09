@@ -1,13 +1,16 @@
+import sys
 import pygame
 from constants import PLAYER_RADIUS, LINE_WIDTH, PLAYER_TURN_SPEED, PLAYER_SPEED, SHOT_RADIUS, PLAYER_SHOOT_SPEED, PLAYER_SHOOT_COOLDOWN_SECONDS
 from circleshape import CircleShape
 from shot import Shot
+from logger import log_event
 
 class Player(CircleShape):
-    def __init__(self, x, y):
+    def __init__(self, x, y, lives=3):
         super().__init__(x, y, PLAYER_RADIUS)
         self.rotation = 0
         self.shot_cooldown = 0
+        self.__lives = lives
 
     def triangle(self):
         forward = pygame.Vector2(0,1).rotate(self.rotation)
@@ -25,6 +28,15 @@ class Player(CircleShape):
         rotated_vector = unit_vector.rotate(self.rotation)
         rotated_with_speed_vector = rotated_vector * PLAYER_SPEED * dt
         self.position += rotated_with_speed_vector
+
+    def get_hit(self):
+        if self.__lives > 0:
+            self.__lives -= 1
+
+    def get_lives(self):
+        return self.__lives
+
+            
     
     def shoot(self):
         if self.shot_cooldown > 0:
