@@ -1,3 +1,7 @@
+# Asteroids Game - Python
+<img width="1277" height="717" alt="image" src="https://github.com/user-attachments/assets/bc13f718-37e7-4aa9-953b-66e62ea57a0e" />
+
+
 ## TODO LIST
 * ~~Add a scoring system~~ ✅
 * ~~Implement multiple lives and respawning~~ ✅
