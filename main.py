@@ -17,6 +17,7 @@ def main():
     clock = pygame.time.Clock()
     font = pygame.font.SysFont("Comic Sans MS", 30)
     dt = 0
+    score = 0
 
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
@@ -39,9 +40,11 @@ def main():
                 return
             
         lives_text = font.render(f"{player.get_lives()} lives left", False, (255,255,255))
+        score_text = font.render(f"Score: {score}", False, (255, 255, 255))
 
         screen.fill("black")
-        screen.blit(lives_text, (5, 5))
+        screen.blit(lives_text, (SCREEN_WIDTH - 110, 5))
+        screen.blit(score_text, (5, 5))
         for obj in drawable:
             obj.draw(screen)
 
@@ -62,6 +65,7 @@ def main():
                     log_event("asteroid_shot")
                     asteroid.split()
                     shot.kill()
+                    score += asteroid.radius * 5
 
         pygame.display.flip()
         dt = clock.tick(60) / 1000
