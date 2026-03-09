@@ -3,6 +3,7 @@ import pygame
 from circleshape import CircleShape
 from constants import LINE_WIDTH, ASTEROID_MIN_RADIUS
 from logger import log_event
+from explosion import Explosion
 
 class Asteroid(CircleShape):
     def __init__(self, x, y, radius):
@@ -10,6 +11,7 @@ class Asteroid(CircleShape):
 
     def split(self):
         self.kill()
+        self.explode()
 
         if self.radius <= ASTEROID_MIN_RADIUS:
             return
@@ -25,6 +27,9 @@ class Asteroid(CircleShape):
 
         asteroid_two = Asteroid(self.position.x, self.position.y, radius)
         asteroid_two.velocity = vector_two
+
+    def explode(self):
+        explosion = Explosion(self.position.x, self.position.y)
 
     def draw(self, screen):
         pygame.draw.circle(screen, "white", self.position, self.radius, LINE_WIDTH)
